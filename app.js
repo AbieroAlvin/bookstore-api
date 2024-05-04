@@ -1,5 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const router = require("./routes/user-routes");
+const bookRouter = require("./routes/book-routes");
 
 // const router = require()
 const app = express();
@@ -12,6 +14,9 @@ mongoose
   .catch((err) => console.error("Error connecting to MongoDB", err));
 
 app.use(express.json());
+
+app.use("/api/user", router);
+app.use("/api/book", bookRouter);
 
 app.use("/api", (req, res) => {
   res.send("Hello World");
